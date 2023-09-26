@@ -28,7 +28,7 @@ function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   const input = require('readline-sync');
   let candidateName = input.question("What is your name? ");
-
+  return candidateName
 }
 
 function askQuestion() {
@@ -38,32 +38,49 @@ function askQuestion() {
   for(i = 0; i < questions.length; i++) {
   let candidateAnswer = [input.question(questions[i])];
   candidateAnswers.push(candidateAnswer);
-  console.log(candidateAnswers);
   }
   }
 
 
 function gradeQuiz(candidateAnswers) {
+  let correctCandidateAnswers = [];
+  let incorrectCandidateAnswers = [];
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   for (i = 0; i < correctAnswers.length; i++) {
-    if (candidateAnswers[i] == correctAnswers[i]) {
+    if (String(candidateAnswers[i]).toLowerCase() === String(correctAnswers[i]).toLowerCase()) {
+        correctCandidateAnswers.push(candidateAnswers[i]);
+        console.log(correctCandidateAnswers);
         console.log(`Correct! Your answer, ${candidateAnswers[i]}, is correct. (Correct answer: ${correctAnswers[i]}.)`);
    } else {
-  console.log(`Your answer, ${candidateAnswers[i]} is incorrect.`);
+    incorrectCandidateAnswers.push(candidateAnswers[i]);
+    console.log(incorrectCandidateAnswers);
+    console.log(`Your answer, ${candidateAnswers[i]} is incorrect.`);
    }
 }
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  let numberCorrectAnswers = correctCandidateAnswers.length;
+  let numberIncorrectAnswers = incorrectCandidateAnswers.length;
+  let totalNumberAnswers = candidateAnswers.length;
 
+  grade = numberCorrectAnswers/(totalNumberAnswers)*100;
+
+  if (grade >= 80) {
+    console.log(`Congratulations! You passed the quiz with a score of ${grade}%.`);
+  } else {
+    console.log(`Sorry. Your score of ${grade}% is not a passing score.`);
+  }
 
   return grade;
 }
 
+
+
 function runProgram() {
-  askForName();
+  // askForName();
   // TODO 1.1c: Greet candidate using their name //
-   console.log("Hello, " + candidateName);
+  console.log(`Hello, ${askForName()}.`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
