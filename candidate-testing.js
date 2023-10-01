@@ -85,29 +85,6 @@ function runProgram() {
   gradeQuiz(this.candidateAnswers);
 }
 
-// console.log(`
-// Candidate Name: ${candidateName}
-// 1) ${questions[0]}
-// Your Answer: ${candidateAnswers[0]}
-// Correct Answer: ${correctAnswers[0]}
-
-// 2) ${questions[1]}
-// Your Answer: ${candidateAnswers[1]}
-// Correct Answer: ${correctAnswers[1]}
-// 3) ${questions[2]}
-// Your Answer: ${candidateAnswers[2]}
-// Correct Answer: ${correctAnswers[2]}
-
-// 4) ${questions[3]}
-// Your Answer: ${candidateAnswers[3]}
-// Correct Answer: ${correctAnswers[3]}
-
-// 5) ${questions[4]}
-// Your Answer: ${candidateAnswers[4]}
-// Correct Answer: ${correctAnswers[4]}
-
-// >>>>> Overall Grade: ${gradeQuiz(candidateAnswers)}% (${correctAnswers.length} of 5 responses correct.)
-// >>>>> Status: `);
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
