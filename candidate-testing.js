@@ -23,11 +23,10 @@ let correctAnswers = ["Sally Ride",
 "3"];
 let candidateAnswers = [];
 
-
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   const input = require('readline-sync');
-  let candidateName = input.question("What is your name? ");
+  candidateName = input.question("What is your name? ");
   return candidateName
 }
 
@@ -45,17 +44,18 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
   let correctCandidateAnswers = [];
   let incorrectCandidateAnswers = [];
-
+  console.log(`Candidate Name: ${candidateName}`);
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   for (i = 0; i < correctAnswers.length; i++) {
+    console.log(`${i+1}) ${questions[i]}`);
     if (String(candidateAnswers[i]).toLowerCase() === String(correctAnswers[i]).toLowerCase()) {
         correctCandidateAnswers.push(candidateAnswers[i]);
-        console.log(correctCandidateAnswers);
-        console.log(`Correct! Your answer, ${candidateAnswers[i]}, is correct. (Correct answer: ${correctAnswers[i]}.)`);
+        // console.log(correctCandidateAnswers);
+        console.log(`Your answer: ${candidateAnswers[i]}\nCorrect answer: ${correctAnswers[i]}`);
    } else {
     incorrectCandidateAnswers.push(candidateAnswers[i]);
-    console.log(incorrectCandidateAnswers);
-    console.log(`Your answer, ${candidateAnswers[i]} is incorrect.`);
+    // console.log(incorrectCandidateAnswers);
+    console.log(`Your answer: ${candidateAnswers[i]}\nCorrect answer: ${correctAnswers[i]}`);
    }
 }
 
@@ -67,9 +67,9 @@ function gradeQuiz(candidateAnswers) {
   grade = numberCorrectAnswers/(totalNumberAnswers)*100;
 
   if (grade >= 80) {
-    console.log(`Congratulations! You passed the quiz with a score of ${grade}%.`);
+    console.log(`>>>>> Overall Grade: ${grade}%. (${numberCorrectAnswers} of 5 responses correct.)\n>>>>> Status: PASSED.`);
   } else {
-    console.log(`Sorry. Your score of ${grade}% is not a passing score.`);
+    console.log(`>>>>> Overall Grade: ${grade}%. (${numberCorrectAnswers} of 5 responses correct.)\n>>>>> Status: FAILED.`);
   }
 
   return grade;
@@ -78,12 +78,36 @@ function gradeQuiz(candidateAnswers) {
 
 
 function runProgram() {
-  // askForName();
+  let candidateName = askForName();
   // TODO 1.1c: Greet candidate using their name //
-  console.log(`Hello, ${askForName()}.`);
+  console.log(`Hello, ${candidateName}.`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
+
+// console.log(`
+// Candidate Name: ${candidateName}
+// 1) ${questions[0]}
+// Your Answer: ${candidateAnswers[0]}
+// Correct Answer: ${correctAnswers[0]}
+
+// 2) ${questions[1]}
+// Your Answer: ${candidateAnswers[1]}
+// Correct Answer: ${correctAnswers[1]}
+// 3) ${questions[2]}
+// Your Answer: ${candidateAnswers[2]}
+// Correct Answer: ${correctAnswers[2]}
+
+// 4) ${questions[3]}
+// Your Answer: ${candidateAnswers[3]}
+// Correct Answer: ${correctAnswers[3]}
+
+// 5) ${questions[4]}
+// Your Answer: ${candidateAnswers[4]}
+// Correct Answer: ${correctAnswers[4]}
+
+// >>>>> Overall Grade: ${gradeQuiz(candidateAnswers)}% (${correctAnswers.length} of 5 responses correct.)
+// >>>>> Status: `);
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
